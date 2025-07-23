@@ -21,7 +21,7 @@ if __name__ == "__main__":
     classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
     model_path = '/kaggle/working/RDM_Net_OD/model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
     # model_path = ''  # No pretrained weights
-    dataset_dir = r'/kaggle/working/VOC_Snow_Split'
+    dataset_dir = r'/kaggle/working/VOC_Snow_Split/train/images'
 
     weather = 'Rain'  # Snow, Rain, Haze, Mixed
     train_annotation_path = f'/kaggle/working/RDM_Net_OD/Datasets/train_Rain.txt'
