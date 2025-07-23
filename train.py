@@ -24,8 +24,8 @@ if __name__ == "__main__":
     dataset_dir = r'/kaggle/working/VOC_Snow_Split'
 
     weather = 'Rain'  # Snow, Rain, Haze, Mixed
-    train_annotation_path = f'Datasets/train_{weather}.txt'
-    val_annotation_path = f'Datasets/test_{weather}.txt'
+    train_annotation_path = f'/kaggle/working/RDM_Net_OD/Datasets/train_Rain.txt'
+    val_annotation_path = f'/kaggle/working/RDM_Net_OD/Datasets/train_Rain.txt'
 
     input_shape = [640, 640]
     phi = 's'
