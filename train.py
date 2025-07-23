@@ -73,7 +73,9 @@ if __name__ == "__main__":
     #     model_train = torch.nn.DataParallel(model)
     model_train = model.train()
     cudnn.benchmark = True
-    model_train = model_train.cuda()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model_train = model_train.to(device)
+
 
     with open(train_annotation_path, encoding='utf-8') as f:
         train_lines = f.readlines()
