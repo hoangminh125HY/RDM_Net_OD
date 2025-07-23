@@ -46,7 +46,8 @@ def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
 
             images, targets, clearimgs = batch[0], batch[1], batch[2]
             with torch.no_grad():
-                images = torch.from_numpy(images).type(torch.FloatTensor).cuda()
+                device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+                images = torch.from_numpy(images).type(torch.FloatTensor).to(device)
                 targets = [torch.from_numpy(ann).type(torch.FloatTensor).cuda() for ann in targets]
                 clearimgs = torch.from_numpy(clearimgs).type(torch.FloatTensor).cuda()
                 posimgs = augment(images)
