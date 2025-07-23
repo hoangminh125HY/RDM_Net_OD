@@ -103,8 +103,8 @@ def alpha_rain(rain, img, save_path, beta=0.8):
 
 
 if __name__ == '__main__':
-    clean_dir = r'/kaggle/working/VOC_Snow_Split/test/images'
-    rainy_dir = r'/kaggle/working/VOC_Snow_Split/test/images'
+    clean_dir = r'/kaggle/working/VOC_Split/test/images'
+    rainy_dir = r'/kaggle/working/VOC_Split/test/images'
     for filename in os.listdir(clean_dir):
         image_path = os.path.join(clean_dir, filename)
         img = cv2.imread(image_path)

@@ -27,9 +27,9 @@ def add_snow(clean_path, snow_mask_path, atmosphere_light=1):
 
 
 if __name__ == '__main__':
-    clean_dir = r"/kaggle/working/VOC_Snow_Split/train/images"
-    snow_mask_dir = r"/kaggle/working/VOC_Snow_Split/train/images"
-    save_dir = r"/kaggle/working/VOC_Snow_Split/train/images"
+    clean_dir = r"/kaggle/working/VOC_Split/train/images"
+    snow_mask_dir = r"/kaggle/working/VOC_Split/train/images"
+    save_dir = r"/kaggle/working/VOC_Split/train/images"
     cleans = os.listdir(clean_dir)
     snow_masks = os.listdir(snow_mask_dir)
     for clean_name in tqdm(cleans):

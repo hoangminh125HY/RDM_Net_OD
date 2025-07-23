@@ -22,7 +22,7 @@ class YoloDataset(Dataset):
         self.train = train
         self.mosaic_ratio = mosaic_ratio
 
-        self.image_dir = '/kaggle/working/VOC_Snow_Split/train' if self.train else '/kaggle/working/VOC_Snow_Split/train'
+        self.image_dir = '/kaggle/working/VOC_Split/train/images' if self.train else '/kaggle/working/VOC_Split/train/images'
 
         # self.dataset_dict = {"Haze": "HazyImages", "Rain": "RainyImages", "Snow": "SnowyImages"}
 
