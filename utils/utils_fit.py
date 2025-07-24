@@ -82,9 +82,14 @@ def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
             images, targets = batch[0], batch[1]
             with torch.no_grad():
                 images = torch.from_numpy(images).float().to(device)
+                # Nếu ảnh đầu vào là haze và clear ghép thành tuple: (haze, clear)
+                if isinstance(images, (list, tuple)) and len(images) == 2:
+                    images = torch.cat([images[0], images[1]], dim=1)  # ghép theo chiều kênh (B, 6, H, W)
+
                 targets = [torch.from_numpy(ann).float().to(device) for ann in targets]
 
                 detected, _, _, _ = model_train(images)
+
                 det_loss = yolo_loss(detected, targets)
 
 
