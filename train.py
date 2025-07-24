@@ -16,8 +16,8 @@ from utils.utils import get_classes
 from utils.utils_fit import fit_one_epoch
 
 if __name__ == "__main__":
-    Cuda = True
-    os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+    Cuda = torch.cuda.is_available()
+    os.environ["CUDA_VISIBLE_DEVICES"] = '0'
     classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
     model_path = '/kaggle/working/RDM_Net_OD/model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
     # model_path = ''  # No pretrained weights
