@@ -88,7 +88,17 @@ def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
 
                 targets = [torch.from_numpy(ann).float().to(device) for ann in targets]
 
-                detected, _, _, _ = model_train(images)
+                outputs = model_train(images)
+                if isinstance(outputs, (list, tuple)):
+                    if len(outputs) == 4:
+                        detected, _, _, _ = outputs
+                    elif len(outputs) == 2:
+                        detected, _ = outputs
+                    else:
+                        detected = outputs[0]
+                else:
+                    detected = outputs
+
 
                 det_loss = yolo_loss(detected, targets)
 
