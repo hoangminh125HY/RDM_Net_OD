@@ -121,7 +121,7 @@ if __name__ == "__main__":
     if epoch_step == 0 or epoch_step_val == 0:
         raise ValueError("Dataset error!")
 
-    train_dataset = YoloDataset(dataset_dir, train_lines, input_shape, num_classes, epoch_length=UnFreeze_Epoch, mosaic=mosaic, train=True)
+    train_dataset = YoloDataset(dataset_dir, train_lines, input_shape, num_classes, epoch_length=UnFreeze_Epoch, mosaic=False, train=True)
     val_dataset = YoloDataset(dataset_dir, val_lines, input_shape, num_classes, epoch_length=UnFreeze_Epoch, mosaic=False, train=False)
     gen = DataLoader(train_dataset, shuffle=True, batch_size=batch_size, num_workers=num_workers, pin_memory=True,
                      drop_last=True, collate_fn=yolo_dataset_collate)
