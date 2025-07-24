@@ -94,6 +94,8 @@ class YOLOLoss(nn.Module):
 
     def get_output_and_grid(self, output, k, stride):
         grid = self.grids[k]
+        if isinstance(output, list):  # ✅ Kiểm tra nếu output là list thì lấy phần tử đầu
+            output = output[0]
         hsize, wsize = output.shape[-2:]
         if grid.shape[2:4] != output.shape[2:4]:
             yv, xv = torch.meshgrid([torch.arange(hsize), torch.arange(wsize)])
