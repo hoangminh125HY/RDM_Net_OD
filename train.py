@@ -18,14 +18,14 @@ from utils.utils_fit import fit_one_epoch
 if __name__ == "__main__":
     Cuda = torch.cuda.is_available()
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'
-    classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
-    model_path = '/kaggle/working/RDM_Net_OD/model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
+    classes_path = 'model_data/rtts_classes.txt'
+    model_path = 'model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
     # model_path = ''  # No pretrained weights
-    dataset_dir = r'/kaggle/working/VOC_Split/train/images'
+    dataset_dir = r'/home/pipi/VSST/wxf/Dataset'
 
-    weather = 'Rain'  # Snow, Rain, Haze, Mixed
-    train_annotation_path = f'/kaggle/working/RDM_Net_OD/Datasets/train_Rain.txt'
-    val_annotation_path = f'/kaggle/working/RDM_Net_OD/Datasets/test_Rain.txt'
+    weather = 'Snow'  # Snow, Rain, Haze, Mixed
+    train_annotation_path = f'Datasets/train_{weather}.txt'
+    val_annotation_path = f'Datasets/test_{weather}.txt'
 
     input_shape = [640, 640]
     phi = 's'
@@ -33,10 +33,10 @@ if __name__ == "__main__":
 
     Init_Epoch = 0
     Freeze_Epoch = 0
-    Freeze_batch_size = 4
+    Freeze_batch_size = 16
 
-    UnFreeze_Epoch = 2
-    Unfreeze_batch_size = 2
+    UnFreeze_Epoch = 100
+    Unfreeze_batch_size = 12
 
     Freeze_Train = False
 
@@ -73,9 +73,7 @@ if __name__ == "__main__":
     #     model_train = torch.nn.DataParallel(model)
     model_train = model.train()
     cudnn.benchmark = True
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model_train = model_train.to(device)
-
+    model_train = model_train.cuda()
 
     with open(train_annotation_path, encoding='utf-8') as f:
         train_lines = f.readlines()
@@ -123,8 +121,8 @@ if __name__ == "__main__":
     if epoch_step == 0 or epoch_step_val == 0:
         raise ValueError("Dataset error!")
 
-    train_dataset = YoloDataset(dataset_dir, train_lines, input_shape, num_classes,  mosaic=mosaic, train=True)
-    val_dataset = YoloDataset(dataset_dir, val_lines, input_shape, num_classes,  mosaic=False, train=False)
+    train_dataset = YoloDataset(dataset_dir, train_lines, input_shape, num_classes, epoch_length=UnFreeze_Epoch, mosaic=mosaic, train=True)
+    val_dataset = YoloDataset(dataset_dir, val_lines, input_shape, num_classes, epoch_length=UnFreeze_Epoch, mosaic=False, train=False)
     gen = DataLoader(train_dataset, shuffle=True, batch_size=batch_size, num_workers=num_workers, pin_memory=True,
                      drop_last=True, collate_fn=yolo_dataset_collate)
     gen_val = DataLoader(val_dataset, shuffle=True, batch_size=batch_size, num_workers=num_workers, pin_memory=True,
