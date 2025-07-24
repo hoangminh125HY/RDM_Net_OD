@@ -18,14 +18,14 @@ from utils.utils_fit import fit_one_epoch
 if __name__ == "__main__":
     Cuda = torch.cuda.is_available()
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'
-    classes_path = 'model_data/rtts_classes.txt'
-    model_path = 'model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
+    classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
+    model_path = '/kaggle/working/RDM_Net_OD/model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
     # model_path = ''  # No pretrained weights
     dataset_dir = r'/home/pipi/VSST/wxf/Dataset'
 
-    weather = 'Snow'  # Snow, Rain, Haze, Mixed
-    train_annotation_path = f'Datasets/train_{weather}.txt'
-    val_annotation_path = f'Datasets/test_{weather}.txt'
+    weather = 'Rain'  # Snow, Rain, Haze, Mixed
+    train_annotation_path = f'/kaggle/working/VOC_Split/train/annotations'
+    val_annotation_path = f'/kaggle/working/VOC_Split/train/images'
 
     input_shape = [640, 640]
     phi = 's'
