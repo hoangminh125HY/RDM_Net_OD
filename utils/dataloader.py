@@ -6,13 +6,14 @@ from torch.utils.data import Dataset
 from random import sample, shuffle
 
 class YoloDataset(Dataset):
-    def __init__(self, annotation_lines, input_shape, num_classes, mosaic=True, train=True):
+    def __init__(self, annotation_lines, input_shape, num_classes, epoch_length=None, mosaic=True, train=True):
         super(YoloDataset, self).__init__()
         self.annotation_lines = annotation_lines
-        self.clearimage_lines = annotation_lines  # Giả sử ảnh clear có cùng danh sách
+        self.clearimage_lines = annotation_lines  # Giả sử ảnh clear cũng giống
         self.length = len(annotation_lines)
         self.input_shape = input_shape
         self.num_classes = num_classes
+        self.epoch_length = epoch_length
         self.mosaic = mosaic
         self.train = train
 
@@ -21,26 +22,24 @@ class YoloDataset(Dataset):
 
     def __getitem__(self, index):
         if self.mosaic:
-            # Lấy 4 dòng annotation ngẫu nhiên (trong đó có dòng hiện tại)
             indices = sample(range(self.length), 3)
             indices.append(index)
             lines = [self.annotation_lines[i] for i in indices]
 
-            # Lấy ảnh clear (ở vị trí ảnh chính)
+            # Ảnh clear lấy từ ảnh chính
             clear_line = self.clearimage_lines[index]
             clear_img_path = clear_line.split()[0]
             clear_img = cv2.imread(clear_img_path)
             clear_img = cv2.resize(clear_img, self.input_shape)
             clear_img = cv2.cvtColor(clear_img, cv2.COLOR_BGR2RGB) / 255.0
 
-            # Mosaic
             image, box = self.get_random_data_with_Mosaic(lines, self.input_shape)
         else:
             line = self.annotation_lines[index]
             image, box = self.get_random_data(line, self.input_shape)
             clear_img = image.copy()
 
-        # Đưa về định dạng torch.Tensor
+        # Đưa về định dạng Tensor
         image = torch.from_numpy(np.transpose(image, (2, 0, 1))).float()
         clear_img = torch.from_numpy(np.transpose(clear_img, (2, 0, 1))).float()
         box = np.array(box, dtype=np.float32)
@@ -63,7 +62,6 @@ class YoloDataset(Dataset):
             image = cv2.resize(image, (w // 2, h // 2))
             ih, iw = image.shape[:2]
 
-            # Vị trí trên mosaic
             if i == 0:
                 new_image[:h // 2, :w // 2] = image
                 dx, dy = 0, 0
