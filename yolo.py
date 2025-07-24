@@ -16,7 +16,7 @@ class YOLO(object):
     _defaults = {
 
         "model_path": r'logs/ep025-loss1.546-val_loss1.622.pth',
-        "classes_path": 'model_data/rtts_classes.txt',
+        "classes_path": '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt',
 
         "input_shape": [640, 640],
 

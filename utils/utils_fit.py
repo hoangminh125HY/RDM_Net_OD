@@ -27,8 +27,7 @@ def augment(inp_img):
     return torch.stack(res, dim=0)
 
 def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch, epoch_step, epoch_step_val, gen, gen_val, Epoch, cuda, save_period):
-    device = torch.device("cuda" if cuda and torch.cuda.is_available() else "cpu")
-
+    device = torch.device("cuda")
     Det_loss = 0
     val_loss = 0
 
@@ -55,6 +54,7 @@ def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
             detected, restored, logits, labels = model_train(hazy_and_clear)
 
             loss_det = yolo_loss(detected, targets)
+            restored = restored[:images.shape[0]]
             loss_l1 = criterion_l1(restored, clearimgs)
             loss_contrs = contrast_loss(logits, labels)
             total_loss = 0.2 * loss_det + wgt[epoch // 20] * loss_l1 + 0.1 * loss_contrs
@@ -84,7 +84,7 @@ def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
                 images = torch.from_numpy(images).float().to(device)
                 targets = [torch.from_numpy(ann).float().to(device) for ann in targets]
 
-                detected, restored = model_train(images)
+                detected = model_train(images)
                 det_loss = yolo_loss(detected, targets)
 
             val_loss += det_loss.item()
