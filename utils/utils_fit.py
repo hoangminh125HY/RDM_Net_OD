@@ -84,8 +84,9 @@ def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch,
                 images = torch.from_numpy(images).float().to(device)
                 targets = [torch.from_numpy(ann).float().to(device) for ann in targets]
 
-                detected = model_train(images)
+                detected, _, _, _ = model_train(images)
                 det_loss = yolo_loss(detected, targets)
+
 
             val_loss += det_loss.item()
             pbar.set_postfix(**{'val_loss': val_loss / (iteration + 1)})
