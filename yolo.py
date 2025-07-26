@@ -15,7 +15,7 @@ from utils.utils_bbox import decode_outputs, non_max_suppression
 class YOLO(object):
     _defaults = {
 
-        "model_path": r'/kaggle/working/RDM_Net_OD/model_data/yolox_s.pth',
+        "model_path": r'/kaggle/working/RDM_Net_OD/model_data/loss_2025_07_26_14_44_01',
         "classes_path": '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt',
 
         "input_shape": [640, 640],
