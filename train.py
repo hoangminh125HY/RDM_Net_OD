@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     weather = 'Rain'  # Snow, Rain, Haze, Mixed
     train_annotation_path = f'/kaggle/working/VOC_Split/train/train_combined_annotations.txt'
-    val_annotation_path = f'/kaggle/working/VOC_Split/train/train_combined_annotations.txt'
+    val_annotation_path = f'/kaggle/working/VOC_Split/val/val_combined_annotations.txt'
 
     input_shape = [640, 640]
     phi = 's'
@@ -64,10 +64,10 @@ if __name__ == "__main__":
         pretrained_dict = torch.load(model_path, map_location=device)
         pretrained_dict = {k: v for k, v in pretrained_dict.items() if np.shape(model_dict[k]) == np.shape(v)}
         model_dict.update(pretrained_dict)
-        model.load_state_dict(model_dict)
+        model.load_state_dict(model_dict ,strict=False)
 
     yolo_loss = YOLOLoss(num_classes)
-    loss_history = LossHistory("logs/", model, input_shape=input_shape)
+    loss_history = LossHistory("/kaggle/working/RDM_Net_OD/model_data", model, input_shape=input_shape)
 
     # if Cuda:
     #     model_train = torch.nn.DataParallel(model)
