@@ -27,6 +27,8 @@ def augment(inp_img):
     return torch.stack(res, dim=0)
 
 def fit_one_epoch(model_train, model, yolo_loss, loss_history, optimizer, epoch, epoch_step, epoch_step_val, gen, gen_val, Epoch, cuda, save_period):
+    import os
+    os.makedirs("logs", exist_ok=True)
     device = torch.device("cuda")
     Det_loss = 0
     val_loss = 0
