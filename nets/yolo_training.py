@@ -90,7 +90,14 @@ class YOLOLoss(nn.Module):
             expanded_strides.append(torch.ones_like(grid[:, :, 0]) * stride)
             outputs.append(output)
 
-        return self.get_losses(x_shifts, y_shifts, expanded_strides, labels, torch.cat(outputs, 1))
+        try:
+            output_cat = torch.cat(outputs, 1)
+        except RuntimeError as e:
+            print("❌ torch.cat(outputs, 1) failed:")
+            for i, out in enumerate(outputs):
+                print(f"  outputs[{i}]: {out.shape}")
+            raise e
+        return self.get_losses(x_shifts, y_shifts, expanded_strides, labels, output_cat)
 
     def get_output_and_grid(self, output, k, stride):
         grid = self.grids[k]
