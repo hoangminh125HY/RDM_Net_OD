@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     weather = 'Rain'  # Snow, Rain, Haze, Mixed
     train_annotation_path = f'/kaggle/working/VOC_Split/train/train_combined_annotations.txt'
-    val_annotation_path = f'/kaggle/working/VOC_Split/val/val_combined_annotations.txt'
+    val_annotation_path = f'/kaggle/working/VOC_Split/train/train_combined_annotations.txt'
 
     input_shape = [640, 640]
     phi = 's'
