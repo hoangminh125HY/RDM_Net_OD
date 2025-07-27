@@ -125,7 +125,12 @@ class YOLO(object):
 
             label = '{} {:.2f}'.format(predicted_class, score)
             draw = ImageDraw.Draw(image)
-            label_size = draw.textsize(label, font)
+            try:
+                label_size = draw.textsize(label, font)
+            except AttributeError:
+                bbox = draw.textbbox((0, 0), label, font=font)
+                label_size = (bbox[2] - bbox[0], bbox[3] - bbox[1])
+
             label = label.encode('utf-8')
             print(label, top, left, bottom, right)
 
