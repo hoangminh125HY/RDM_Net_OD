@@ -25,8 +25,8 @@ if __name__ == "__main__":
 
     test_interval = 100
 
-    dir_origin_path = r"img"
-    dir_save_path = r"img_out"
+    dir_origin_path = r"/kaggle/working/VOC_Split/test/images"
+    dir_save_path = r"/kaggle/working/VOC_Split/test"
 
     if mode == "predict":
 
