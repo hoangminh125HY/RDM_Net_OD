@@ -18,9 +18,9 @@ if __name__ == "__main__":
 
     map_vis = False
 
-    text_path = r"/kaggle/working/VOC_Split/test.txt"
-    degrade_dir = r"./kaggle/working/VOC_Split/test/images"
-    annotation_dir = r"./kaggle/working/VOC_Split/test/annotations"
+    text_path = r"/kaggle/working/VOC_Split/val.txt"
+    degrade_dir = r"/kaggle/working/VOC_Split/val/images"
+    annotation_dir = r"/kaggle/working/VOC_Split/val/annotations"
     image_suffix = '.jpg'
     map_out_path = 'map_out/VOC_Snow'
 
