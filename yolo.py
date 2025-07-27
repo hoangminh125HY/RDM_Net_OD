@@ -89,7 +89,7 @@ class YOLO(object):
             top_conf = results[0][:, 4] * results[0][:, 5]
             top_boxes = results[0][:, :4]
 
-        font = ImageFont.truetype(font='model_data/simhei.ttf', size=np.floor(3e-2 * image.size[1] + 0.5).astype('int32'))
+        font = ImageFont.truetype(font='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', size=np.floor(3e-2 * image.size[1] + 0.5).astype('int32'))
         thickness = int(max((image.size[0] + image.size[1]) // np.mean(self.input_shape), 1))
 
         if crop:
