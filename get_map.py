@@ -45,7 +45,7 @@ if __name__ == "__main__":
         all_name = os.listdir(degrade_dir)
         print("Get predict result.")
         for image_id in tqdm(image_ids):
-            image_path = os.path.join(degrade_dir, image_id + image_suffix)
+            image_path = os.path.join(degrade_dir, image_id)
             # image_path = os.path.join(VOCdevkit_path, "images/" + image_id + ".jpg")
 
             # format_a = image_id + ".jpg"
@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
             image = Image.open(image_path)
             if map_vis:
-                image.save(os.path.join(map_out_path, "images-optional/" + image_id + image_suffix))
+                image.save(os.path.join(map_out_path, "images-optional/" + image_id))
             yolo.get_map_txt(image_id, image, class_names, map_out_path)
         print("Get predict result done.")
 
