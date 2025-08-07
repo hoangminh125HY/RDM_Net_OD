@@ -50,16 +50,27 @@ class YOLO(object):
         self.colors = list(map(lambda x: (int(x[0] * 255), int(x[1] * 255), int(x[2] * 255)), self.colors))
         self.generate()
 
-    def generate(self):
-        self.net = YoloBody(self.num_classes, self.phi)
-        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.net.load_state_dict(torch.load(self.model_path, map_location=device), strict=False)
-        self.net = self.net.eval()
-        print('{} model, and classes loaded.'.format(self.model_path))
+def generate(self):
+    self.net = YoloBody(self.num_classes, self.phi)
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
+    print("Loading weights with partial match (ignoring mismatched layers)...")
+    model_dict = self.net.state_dict()
+    pretrained_dict = torch.load(self.model_path, map_location=device)
 
-        if self.cuda:
-            # self.net = nn.DataParallel(self.net)
-            self.net = self.net.cuda()
+    # Chỉ giữ lại các trọng số có cùng tên và shape
+    filtered_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict and v.shape == model_dict[k].shape}
+
+    # Cập nhật các trọng số đã lọc vào mô hình
+    model_dict.update(filtered_dict)
+    self.net.load_state_dict(model_dict)
+
+    self.net = self.net.eval()
+    print('{} model loaded with partial weights ({} matched layers).'.format(self.model_path, len(filtered_dict)))
+
+    if self.cuda:
+        self.net = self.net.cuda()
+
 
     def detect_image(self, image, crop=False):
 
