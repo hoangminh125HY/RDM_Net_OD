@@ -11,16 +11,16 @@ if __name__ == "__main__":
 
     map_mode = 0
 
-    classes_path = 'model_data/rtts_classes.txt'
+    classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
 
     # MINOVERLAP      = [0.5,0.65,0.7,0.75,0.8,0.85,0.9,0.95]
     MINOVERLAP = [0.5]
 
     map_vis = False
 
-    text_path = r"./Datasets/VOC_Snow/ImageSets/Main/test.txt"
-    degrade_dir = r"./Datasets/VOC_Snow/test/SnowyImages"
-    annotation_dir = r"./Datasets/VOC_Snow/test/Annotations"
+    text_path = r"/kaggle/working/VOC_Split/train/train_combined_annotations.txt"
+    degrade_dir = r"/kaggle/working/VOC_Split/train/images"
+    annotation_dir = r"/kaggle/working/VOC_Split/train/annotations"
     image_suffix = '.jpg'
     map_out_path = 'map_out/VOC_Snow'
 

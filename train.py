@@ -16,16 +16,16 @@ from utils.utils import get_classes
 from utils.utils_fit import fit_one_epoch
 
 if __name__ == "__main__":
-    Cuda = True
-    os.environ["CUDA_VISIBLE_DEVICES"] = '1'
-    classes_path = 'model_data/rtts_classes.txt'
-    model_path = 'model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
+    Cuda = torch.cuda.is_available()
+    os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+    classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
+    model_path = '/kaggle/working/RDM_Net_OD/model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
     # model_path = ''  # No pretrained weights
-    dataset_dir = r'/home/pipi/VSST/wxf/Dataset'
+    dataset_dir = r'/kaggle/working/VOC_Split'
 
-    weather = 'Snow'  # Snow, Rain, Haze, Mixed
-    train_annotation_path = f'Datasets/train_{weather}.txt'
-    val_annotation_path = f'Datasets/test_{weather}.txt'
+    #weather = 'Snow'  # Snow, Rain, Haze, Mixed
+    train_annotation_path = f'/kaggle/working/VOC_Split/train/train_combined_annotations.txt'
+    val_annotation_path = f'/kaggle/working/VOC_Split/val/val_combined_annotations.txt'
 
     input_shape = [512, 512]
     phi = 's'
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     Freeze_Epoch = 0
     Freeze_batch_size = 16
 
-    UnFreeze_Epoch = 100
+    UnFreeze_Epoch = 3
     Unfreeze_batch_size = 4
 
     Freeze_Train = False

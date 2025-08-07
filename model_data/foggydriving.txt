@@ -1,5 +1,3 @@
-person
-bicycle
-car
-motorcycle
-bus
+Car
+Bus
+Person

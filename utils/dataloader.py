@@ -24,7 +24,7 @@ class YoloDataset(Dataset):
 
         self.clean_image_dir = Path(self.dataset_dir) / ('train/CleanImages' if self.train else 'test/CleanImages')
         # Đúng:
-        self.image_dir = 'train/CleanImages' if self.train else 'test/CleanImages'
+        self.image_dir = '/kaggle/working/VOC_Split/train/images' if self.train else '/kaggle/working/VOC_Split/val/images'
 
         # self.dataset_dict = {"Haze": "HazyImages", "Rain": "RainyImages", "Snow": "SnowyImages"}
 
