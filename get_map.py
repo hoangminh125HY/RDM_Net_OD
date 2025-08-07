@@ -24,7 +24,7 @@ if __name__ == "__main__":
     image_suffix = '.jpg'
     map_out_path = '/kaggle/working/VOC_Split'
 
-    image_ids = open(text_path).read().strip().split()
+    image_ids = [os.path.splitext(os.path.basename(x))[0] for x in open(text_path).read().strip().split()]
     # image_ids = open(os.path.join(VOCdevkit_path, "test_Rain.txt")).read().strip().split()
 
     if not os.path.exists(map_out_path):
