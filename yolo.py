@@ -15,7 +15,7 @@ from utils.utils_bbox import decode_outputs, non_max_suppression
 class YOLO(object):
     _defaults = {
 
-        "model_path": r'/kaggle/working/logs/ep003-loss4.531-val_loss4.212.pth',
+        "model_path": r'/kaggle/working/logs/ep005-loss4.271-val_loss3.969.pth',
         "classes_path": '/kaggle/working/RDM_Net_OD/model_data/voc_classes.txt',
 
         "input_shape": [640, 640],
