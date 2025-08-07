@@ -19,10 +19,10 @@ if __name__ == "__main__":
     map_vis = False
 
     text_path = r"/kaggle/working/VOC_Split/train/train_combined_annotations.txt"
-    degrade_dir = r"/kaggle/working/VOC_Split/train/images"
-    annotation_dir = r"/kaggle/working/VOC_Split/train/annotations"
+    degrade_dir = r"/kaggle/working/VOC_Split/val/images"
+    annotation_dir = r"/kaggle/working/VOC_Split/val/annotations"
     image_suffix = '.jpg'
-    map_out_path = 'map_out/VOC_Snow'
+    map_out_path = '/kaggle/working/VOC_Split'
 
     image_ids = open(text_path).read().strip().split()
     # image_ids = open(os.path.join(VOCdevkit_path, "test_Rain.txt")).read().strip().split()
