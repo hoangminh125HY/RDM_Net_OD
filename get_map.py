@@ -18,9 +18,9 @@ if __name__ == "__main__":
 
     map_vis = False
 
-    text_path = r"/kaggle/working/VOC_Split/train/train_combined_annotations.txt"
-    degrade_dir = r"/kaggle/working/VOC_Split/train/images"
-    annotation_dir = r"/kaggle/working/VOC_Split/train/annotations"
+    text_path = r"/kaggle/working/VOC_Split/val/val_combined_annotations.txt"
+    degrade_dir = r"/kaggle/working/VOC_Split/val/images"
+    annotation_dir = r"/kaggle/working/VOC_Split/val/annotations"
     image_suffix = '.jpg'
     map_out_path = '/kaggle/working/VOC_Split'
     image_ids = [os.path.splitext(os.path.basename(x.strip()))[0] for x in open(text_path).readlines()]
