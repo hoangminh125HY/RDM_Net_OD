@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     map_mode = 0
 
-    classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
+    classes_path = '/kaggle/working/RDM_Net_OD/model_data/voc_classes.txt'
 
     # MINOVERLAP      = [0.5,0.65,0.7,0.75,0.8,0.85,0.9,0.95]
     MINOVERLAP = [0.5]
