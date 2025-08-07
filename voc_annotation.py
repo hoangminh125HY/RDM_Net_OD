@@ -6,7 +6,7 @@ from utils.utils import get_classes
 
 annotation_mode = 0
 
-classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
+classes_path = '/kaggle/working/RDM_Net_OD/model_data/voc_classes.txt'
 
 trainval_percent = 1
 train_percent = 0.9

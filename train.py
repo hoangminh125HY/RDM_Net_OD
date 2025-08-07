@@ -18,7 +18,7 @@ from utils.utils_fit import fit_one_epoch
 if __name__ == "__main__":
     Cuda = torch.cuda.is_available()
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'
-    classes_path = '/kaggle/working/RDM_Net_OD/model_data/rtts_classes.txt'
+    classes_path = '/kaggle/working/RDM_Net_OD/model_data/voc_classes.txt'
     model_path = '/kaggle/working/RDM_Net_OD/model_data/yolox_s.pth'                 # Pretrained weights for better performance (COCO or VOC）
     # model_path = ''  # No pretrained weights
     dataset_dir = r'/kaggle/working/VOC_Split'
