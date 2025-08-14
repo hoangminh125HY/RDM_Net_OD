@@ -223,7 +223,7 @@ class CSPDarknet(nn.Module):
         self.out_features = out_features
 
         # Load ResNet18 without the fully connected layer
-        resnet = resnet18(weights=None)
+        resnet = resnet18(weights=True)
         
         # Stem: ResNet18's initial conv + bn + relu + maxpool
         self.stem = nn.Sequential(
