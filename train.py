@@ -35,7 +35,7 @@ if __name__ == "__main__":
     Freeze_Epoch = 0
     Freeze_batch_size = 16
 
-    UnFreeze_Epoch = 66
+    UnFreeze_Epoch = 46
     Unfreeze_batch_size = 4
 
     Freeze_Train = False
